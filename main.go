@@ -8,10 +8,11 @@ import (
 
 func main() {
 	r := gin.Default()
-	controller.Route(r)
 	db := mongoDb.MongoRepository{}
 	db.Init()
-	_ = controller.Server{Task: db}
+	s := controller.Server{Task: db}
+	s.Route(r)
+
 	err := r.Run(":8081")
 	if err != nil {
 		panic("Unable to start application")
