@@ -8,6 +8,12 @@ import (
 	"time"
 )
 
+func (s *Server) Home() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.JSON(200, gin.H{"message": "This is the home page"})
+	}
+}
+
 func (s *Server) AddTask() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		task := models.Task{
